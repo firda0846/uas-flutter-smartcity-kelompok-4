@@ -10,6 +10,29 @@ class KoleksiPage extends StatelessWidget {
       body: ListView(
         children: [
           Container(
+            decoration: BoxDecoration(
+              color: Colors.white, // Warna latar belakang
+              borderRadius: BorderRadius.circular(8), // Membuat border radius
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5), // Warna bayangan
+                  spreadRadius: 2, // Jarak bayangan
+                  blurRadius: 5, // Tingkat kabur bayangan
+                  offset: Offset(0, 3), // Offset bayangan
+                ),
+              ],
+              image: DecorationImage(
+                image: AssetImage('assets/images/background.jpg'), // Gambar latar belakang
+                fit: BoxFit.cover, // Cara gambar diposisikan
+              ),
+            ),
+            padding: EdgeInsets.all(16), // Padding konten di dalam container
+            child: Text(
+              'Konten di dalam Container',
+              style: TextStyle(fontSize: 18, color: Colors.black),
+            ),
+          ),
+          Container(
             padding: EdgeInsets.all(16),
             child: Text(
               'Kategori',
@@ -23,7 +46,7 @@ class KoleksiPage extends StatelessWidget {
               children: [
                 KategoriItem(icon: Icons.book, label: 'Fiksi', books: [
                   BukuTerbaruItem(
-                    judul: 'Harry Potter dan Tawanan Azkaban',
+                    judul: 'Harry Potter And the Philosophers Stone',
                     penulis: 'J. K. Rowling',
                     cover: './images/buku1.jpg',
                     rating: 4.8,
@@ -73,9 +96,9 @@ class KoleksiPage extends StatelessWidget {
                     sinopsis: 'Buku ini menjelaskan tentang asal-usul alam semesta...',
                   ),
                    BukuTerbaruItem(
-                    judul: 'Sejarah Teh',
-                    penulis: 'LAURA C.MARTIN',
-                    cover: './images/buku3.jpg',
+                    judul: 'NEGERI PARA BEDEBAH',
+                    penulis: 'TERE LIYE',
+                    cover: './images/buku9.jpg',
                     rating: 4.9,
                     stok: 3,
                     sinopsis: 'Buku ini menjelaskan tentang asal-usul alam semesta...',
@@ -107,9 +130,9 @@ class KoleksiPage extends StatelessWidget {
                     sinopsis: 'Buku ini menjelaskan tentang asal-usul alam semesta...',
                   ),
                    BukuTerbaruItem(
-                    judul: 'NEGERI PARA BEDEBAH',
-                    penulis: 'TERE LIYE',
-                    cover: './images/buku3.jpg',
+                    judul: 'Sejarah Teh',
+                    penulis: '',
+                    cover: './images/buku9.jpg',
                     rating: 4.9,
                     stok: 3,
                     sinopsis: 'Buku ini menjelaskan tentang asal-usul alam semesta...',
@@ -150,6 +173,7 @@ class KoleksiPage extends StatelessWidget {
     );
   }
 }
+
 
 class KategoriItem extends StatelessWidget {
   final IconData icon;

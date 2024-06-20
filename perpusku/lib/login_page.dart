@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'home_page.dart';
 import 'api_service.dart';
-import 'register_page.dart'; // Import ApiService yang telah dibuat
+import 'register_page.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -11,7 +12,26 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
-  final ApiService _apiService = ApiService(); // Instance dari ApiService
+  final ApiService _apiService = ApiService();
+  bool _isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkLoginStatus();
+  }
+
+  Future<void> _checkLoginStatus() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('token');
+
+    if (token != null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    }
+  }
 
   @override
   void dispose() {
@@ -20,18 +40,23 @@ class _LoginPageState extends State<LoginPage> {
     super.dispose();
   }
 
-  void _login() async {
+  Future<void> _login() async {
     final String email = _emailController.text;
     final String password = _passwordController.text;
 
     if (email.isNotEmpty && password.isNotEmpty) {
+      setState(() {
+        _isLoading = true;
+      });
       try {
-        print('Attempting to log in with email: $email'); // Debug log
+        print('Attempting to log in with email: $email');
         Map<String, dynamic> result = await _apiService.login(email, password);
-        print('Login result: $result'); // Debug log
+        print('Login result: $result');
 
         if (result.containsKey('token')) {
-          // Jika login sukses, navigasi ke halaman HomePage
+          final SharedPreferences prefs = await SharedPreferences.getInstance();
+          await prefs.setString('token', result['token']);
+
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => HomePage()),
@@ -42,10 +67,14 @@ class _LoginPageState extends State<LoginPage> {
           );
         }
       } catch (e) {
-        print('Login failed: $e'); // Debug log
+        print('Login failed: $e');
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text('Failed to login. Please try again.')),
         );
+      } finally {
+        setState(() {
+          _isLoading = false;
+        });
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -106,16 +135,18 @@ class _LoginPageState extends State<LoginPage> {
                 obscureText: true,
               ),
               SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: _login,
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                child: Text('Login', style: TextStyle(fontSize: 18)),
-              ),
+              _isLoading
+                  ? CircularProgressIndicator()
+                  : ElevatedButton(
+                      onPressed: _login,
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      child: Text('Login', style: TextStyle(fontSize: 18)),
+                    ),
               SizedBox(height: 16),
               TextButton(
                 onPressed: _register,
@@ -127,4 +158,10 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+}
+
+void main() {
+  runApp(MaterialApp(
+    home: LoginPage(),
+  ));
 }

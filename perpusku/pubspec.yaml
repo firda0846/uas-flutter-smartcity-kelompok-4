@@ -36,7 +36,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
   shared_preferences: ^2.2.2
-  http: ^1.2.1
+  http: ^0.13.3
 
 
 dev_dependencies:
@@ -63,7 +63,6 @@ flutter:
 
     - images/buku1.jpg
     - images/buku2.jpg
-    - images/logo.png
     - images/buku3.jpg
     - images/buku4.jpg
     - images/buku5.jpg
@@ -74,7 +73,7 @@ flutter:
     - images/buku10.jpg
     - images/buku11.jpg
     - images/buku12.jpg
-
+    - images/logo.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

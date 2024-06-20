@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'home_page_content.dart';
 import 'search_page.dart';
-import 'peminjaman.dart';
+import 'peminjaman_page.dart';
 import 'koleksi_page.dart';
 import 'lainnya_page.dart';
 import 'detail_buku_page.dart';
@@ -36,14 +36,15 @@ class _HomePageState extends State<HomePage> {
         title: Row(
           children: [
             Image.asset(
-              'assets/logo.png', // Path to your logo image
+              './images/logo.png', // Path to your logo image
               height: 30, // Adjust the height as needed
             ),
             SizedBox(width: 10), // Add some space between the logo and text
             Text(
               'Perpusku',
               style: TextStyle(
-                fontFamily: 'montserrat', // Replace 'YourFont' with your font family
+                fontFamily:
+                    'montserrat', // Replace 'YourFont' with your font family
                 fontSize: 20,
                 fontWeight: FontWeight.bold,
               ),

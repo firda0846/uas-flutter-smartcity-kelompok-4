@@ -17,7 +17,8 @@ class HomePageContent extends StatelessWidget {
           ),
         ),
         centerTitle: true, // Memastikan teks berada di tengah
-        backgroundColor: Color.fromARGB(255, 29, 147, 243), // Warna latar belakang AppBar
+        backgroundColor:
+            Color.fromARGB(255, 29, 147, 243), // Warna latar belakang AppBar
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -35,77 +36,80 @@ class HomePageContent extends StatelessWidget {
               ),
             ),
             GridView.count(
-              crossAxisCount: 2, // Atur menjadi 2 kolom untuk visibilitas lebih baik di perangkat mobile
-              childAspectRatio: MediaQuery.of(context).size.width / (MediaQuery.of(context).size.height / 1.6), // Sesuaikan rasio
+              crossAxisCount:
+                  2, // Atur menjadi 2 kolom untuk visibilitas lebih baik di perangkat mobile
+              childAspectRatio: MediaQuery.of(context).size.width /
+                  (MediaQuery.of(context).size.height / 1.6), // Sesuaikan rasio
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(), // Nonaktifkan scroll pada GridView
+              physics:
+                  NeverScrollableScrollPhysics(), // Nonaktifkan scroll pada GridView
               padding: const EdgeInsets.all(10.0),
               mainAxisSpacing: 10.0, // Jarak antara baris
               crossAxisSpacing: 10.0, // Jarak antara kolom
               children: [
                 KartuBuku(
-                  judul: 'Harry Potter dan Tawanan Azkaban',
+                  judul: 'Harry Potter and the philosophers stone',
                   penulis: 'J. K. Rowling',
                   gambar: './images/buku1.jpg', // Pastikan path yang benar
-                  rating: 4.8,
-                  halaman: 317,
+                  rating: 4.760000228881836,
+                  halaman: 223,
                   stok: 5,
                 ),
                 KartuBuku(
-                  judul: 'Argantara',
-                  penulis: 'falestiyana',
+                  judul: 'To kill a mockingbird',
+                  penulis: 'Harper Lee',
                   gambar: './images/buku2.jpg',
-                  rating: 4.0,
+                  rating: 4.0002009,
                   halaman: 250,
-                  stok: 2,
+                  stok: 22,
                 ),
                 KartuBuku(
-                  judul: 'Sejarah Teh',
-                  penulis: 'Laura C. Martin',
+                  judul: '1984',
+                  penulis: 'George Orwell',
                   gambar: './images/buku3.jpg',
-                  rating: 3.5,
+                  rating: 4.5,
                   halaman: 300,
-                  stok: 0,
+                  stok: 5,
                 ),
                 KartuBuku(
-                  judul: 'Sejarah Dunia Lengkap',
-                  penulis: 'Hutton Webster',
+                  judul: 'pride and prejudice',
+                  penulis: 'Jane Auten',
                   gambar: './images/buku4.jpg',
                   rating: 4.2,
                   halaman: 220,
                   stok: 1,
                 ),
                 KartuBuku(
-                  judul: 'Eccedentesiast Canva Narendra',
-                  penulis: 'Itakrn',
+                  judul: 'The Great Gastby',
+                  penulis: 'F.Scott Fitzqerald',
                   gambar: './images/buku5.jpg',
                   rating: 4.7,
                   halaman: 432,
                   stok: 3,
                 ),
                 KartuBuku(
-                  judul: 'Educated Terdidik',
-                  penulis: 'Tara Westover',
+                  judul: 'the catcher In the Rye',
+                  penulis: 'J.D.Saliqer',
                   gambar: './images/buku6.jpg',
                   rating: 4.6,
                   halaman: 328,
                   stok: 4,
                 ),
                 KartuBuku(
-                  judul: 'Rembulan Tenggekam Diwajahmu',
-                  penulis: 'Tere Liye',
+                  judul: 'The Hobbit',
+                  penulis: 'J.R.R Tokien',
                   gambar: './images/buku7.jpg',
                   rating: 4.9,
                   halaman: 281,
                   stok: 2,
                 ),
                 KartuBuku(
-                  judul: 'Bumi',
-                  penulis: 'tere Liye',
+                  judul: 'Fahrenheit41',
+                  penulis: 'Ray Bradbury',
                   gambar: './images/buku8.jpg',
                   rating: 4.3,
                   halaman: 180,
-                  stok: 7,
+                  stok: 12,
                 ),
                 KartuBuku(
                   judul: 'Negeri Para Bedebah',
@@ -220,7 +224,8 @@ class KartuBuku extends StatelessWidget {
                     penulis,
                     style: TextStyle(
                       fontSize: 16,
-                      color: Color.fromARGB(255, 97, 97, 97), // Warna teks penulis
+                      color:
+                          Color.fromARGB(255, 97, 97, 97), // Warna teks penulis
                     ),
                     textAlign: TextAlign.center, // Teks berada di tengah
                   ),
